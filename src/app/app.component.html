@@ -16,4 +16,11 @@
     </mat-select>
   </mat-form-field>
   <button (click)="onSubmit()">submit</button>
+  <div formArrayName="hobby">
+    <div *ngFor="let hobby of hobbyArray.controls; let i = index">
+      <input type="text" [formControlName]="i" placeholder="hobby">
+      <button (click)="deleteHobbyForm(i)">delete</button>
+    </div>
+  </div>
+  <button (click)="addHobbyForm()">add hobby</button>
 </form>

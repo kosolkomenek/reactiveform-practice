@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { Component, ɵɵtrustConstantResourceUrl } from '@angular/core';
+import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 
 interface status {
   value: string;
@@ -26,9 +26,21 @@ export class AppComponent {
       code: [''],
       weight:[''],
       dangerouse:[''],
-      status:['']
+      status:[''],
+      hobby: this.fb.array([this.fb.control(''),this.fb.control('')])
     });
   
+  get hobbyArray(){
+    return this.productForm.get('hobby') as FormArray;
+  }
+
+  addHobbyForm(){
+    console.log(this.productForm)
+    this.hobbyArray.push(this.fb.control(''));
+  }
+  deleteHobbyForm(id:number){
+    this.hobbyArray.removeAt(id);
+  }
   onSubmit(){
     console.log(this.productForm.value);
   }
